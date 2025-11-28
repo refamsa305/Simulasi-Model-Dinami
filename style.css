@@ -1,0 +1,206 @@
+:root {
+    --primary: #2c3e50;
+    --accent: #3498db;
+    --light: #ecf0f1;
+    --success: #27ae60;
+    --danger: #e74c3c;
+    --radius: 8px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Header */
+header {
+    text-align: center;
+    border-bottom: 2px solid var(--light);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-size: 2.2em;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.description {
+    color: #7f8c8d;
+    margin-top: 5px;
+}
+
+/* Guide Box */
+.guide-box {
+    background: #eef7fd;
+    border-left: 4px solid var(--accent);
+    padding: 15px 20px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+
+.guide-box h3 {
+    margin-top: 0;
+    color: var(--primary);
+    font-size: 1.1em;
+}
+
+.guide-box ol {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+/* Cards & Inputs */
+.card {
+    background: #fff;
+    border: 1px solid #e1e4e8;
+    padding: 20px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: monospace;
+    /* Agar rumus mudah dibaca */
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.dynamic-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    /* Kolom nama kecil, fungsi besar */
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.hint {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+.note {
+    font-size: 0.8em;
+    color: var(--danger);
+    font-style: italic;
+}
+
+/* Buttons */
+.btn-secondary {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 38px;
+    /* Match input height */
+}
+
+.mode-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.mode-btn {
+    padding: 12px 25px;
+    background: white;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.mode-btn:hover,
+.mode-btn.active {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-generate {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--success);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+.btn-generate:hover {
+    background-color: #219150;
+}
+
+/* Utilities */
+.hidden {
+    display: none;
+}
+
+.hidden-section {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: var(--radius);
+    border: 1px dashed #ccc;
+}
+
+#plot-area {
+    width: 100%;
+    height: 600px;
+    margin-top: 30px;
+    border: 1px solid #ddd;
+    border-radius: var(--radius);
+}

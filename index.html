@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathSolver - Analisis Numerik</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <div class="logo">
+                Math<span>Solver</span>
+            </div>
+            <p class="description">Platform Analisis Numerik Interaktif untuk Mahasiswa Matematika.</p>
+        </header>
+
+        <div class="guide-box">
+            <h3>Tata Cara Penggunaan</h3>
+            <ol>
+                <li>Masukkan <b>jumlah parameter</b> (konstanta) dan tentukan nilainya.</li>
+                <li>Pilih <b>jumlah variabel</b> (2 atau 3) dan tuliskan fungsinya.</li>
+                <li>Gunakan format matematika baku: <code>*</code> (kali), <code>/</code> (bagi), <code>^</code>
+                    (pangkat).</li>
+                <li>Pilih mode: <b>Potret Fase</b> atau <b>Time Series</b>.</li>
+                <li>Isi konfigurasi (batas atau kondisi awal), lalu klik <b>Generate</b>.</li>
+            </ol>
+        </div>
+
+        <div class="card">
+            <h3>A. Parameter Model</h3>
+            <label>Masukkan Jumlah Parameter:</label>
+            <div class="input-group">
+                <input type="number" id="paramCount" min="0" placeholder="Contoh: 2">
+                <button class="btn-secondary" onclick="createParamInputs()">Set</button>
+            </div>
+            <div id="paramInputsContainer" class="dynamic-container"></div>
+        </div>
+
+        <div class="card">
+            <h3>B. Variabel & Persamaan Diferensial</h3>
+            <label>Jumlah Variabel:</label>
+            <select id="varCount" onchange="createVarInputs()">
+                <option value="0">-- Pilih --</option>
+                <option value="2">2 Variabel (Sistem 2D)</option>
+                <option value="3">3 Variabel (Sistem 3D)</option>
+            </select>
+
+            <p class="hint">Contoh: <code>a * x - b * x * y</code></p>
+            <div id="varInputsContainer" class="dynamic-container"></div>
+        </div>
+
+        <div class="card">
+            <h3>C. Konfigurasi & Visualisasi</h3>
+
+            <div class="mode-buttons">
+                <button class="mode-btn" onclick="setMode('phase')" id="btn-phase">Potret Fase</button>
+                <button class="mode-btn" onclick="setMode('timeseries')" id="btn-time">Time Series</button>
+            </div>
+
+            <div id="phase-inputs" class="hidden-section hidden">
+                <h4>Pengaturan Potret Fase</h4>
+
+                <p class="hint">1. Tentukan batas tampilan grafik (Domain):</p>
+                <div class="grid-2">
+                    <input type="number" id="xMin" placeholder="X Min (cth: 0)" value="0">
+                    <input type="number" id="xMax" placeholder="X Max (cth: 5)" value="5">
+                    <input type="number" id="yMin" placeholder="Y Min (cth: 0)" value="0">
+                    <input type="number" id="yMax" placeholder="Y Max (cth: 5)" value="5">
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
+
+                <p class="hint">2. Tentukan titik awal garis trajektori:</p>
+                <label>Berapa titik awal yang mau dibuat?</label>
+                <div class="input-group">
+                    <input type="number" id="trajCount" placeholder="Jumlah titik (cth: 3)">
+                    <button class="btn-secondary" onclick="createTrajectoryInputs()">Set Titik</button>
+                </div>
+
+                <div id="trajInputsContainer" class="dynamic-container" style="margin-top: 10px;"></div>
+            </div>
+
+            <!-- <div id="phase-inputs" class="hidden-section hidden">
+                <h4>Pengaturan Potret Fase</h4>
+                <p class="hint">Tentukan batas sumbu X dan Y.</p>
+                <div class="grid-2">
+                    <input type="number" id="xMin" placeholder="X Min (cth: 0)">
+                    <input type="number" id="xMax" placeholder="X Max (cth: 10)">
+                    <input type="number" id="yMin" placeholder="Y Min (cth: 0)">
+                    <input type="number" id="yMax" placeholder="Y Max (cth: 10)">
+                </div>
+                <p class="note">*Titik ekuilibrium akan ditandai dengan bintang.</p>
+            </div> -->
+
+            <div id="timeseries-inputs" class="hidden-section hidden">
+                <h4>Pengaturan Time Series</h4>
+                <label>Kondisi Awal (Initial Values):</label>
+                <div id="initialConditionsContainer" class="grid-2"></div>
+
+                <label style="margin-top:15px;">Rentang Waktu:</label>
+                <div class="grid-2">
+                    <input type="number" id="tMax" placeholder="Durasi (t max)" value="50">
+                    <input type="number" id="dt" placeholder="Step Size (dt)" value="0.05">
+                </div>
+            </div>
+
+            <button type="button" class="btn-generate" onclick="generatePlot()">Generate Visualisasi</button>
+        </div>
+
+        <div id="plot-area"></div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
