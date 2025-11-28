@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MathSolver - Analisis Numerik</title>
+    <title>MathSolver - Zulfahmi Al Fareza</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
@@ -20,18 +20,20 @@
             <div class="logo">
                 Math<span>Solver</span>
             </div>
-            <p class="description">Platform Analisis Numerik Interaktif untuk Mahasiswa Matematika.</p>
+            <p class="description">Platform Analisis Numerik Interaktif.</p>
+
+            <div class="credit-badge">
+                <small>Diciptakan oleh <span>Mohamad Zulfahmi Al Fareza</span></small>
+            </div>
         </header>
 
         <div class="guide-box">
             <h3>Tata Cara Penggunaan</h3>
             <ol>
-                <li>Masukkan <b>jumlah parameter</b> (konstanta) dan tentukan nilainya.</li>
-                <li>Pilih <b>jumlah variabel</b> (2 atau 3) dan tuliskan fungsinya.</li>
-                <li>Gunakan format matematika baku: <code>*</code> (kali), <code>/</code> (bagi), <code>^</code>
-                    (pangkat).</li>
-                <li>Pilih mode: <b>Potret Fase</b> atau <b>Time Series</b>.</li>
-                <li>Isi konfigurasi (batas atau kondisi awal), lalu klik <b>Generate</b>.</li>
+                <li>Masukkan jumlah parameter dan variabel.</li>
+                <li>Gunakan format matematika baku (cth: <code>a*x - b*y</code>).</li>
+                <li>Pilih mode <b>Potret Fase</b> (untuk geometri) atau <b>Time Series</b> (untuk waktu).</li>
+                <li>Klik tombol Download untuk menyimpan hasil simulasi.</li>
             </ol>
         </div>
 
@@ -54,7 +56,7 @@
                 <option value="3">3 Variabel (Sistem 3D)</option>
             </select>
 
-            <p class="hint">Contoh: <code>a * x - b * x * y</code></p>
+            <p class="hint">Contoh fungsi: <code>a * x - b * x * y</code></p>
             <div id="varInputsContainer" class="dynamic-container"></div>
         </div>
 
@@ -66,40 +68,56 @@
                 <button class="mode-btn" onclick="setMode('timeseries')" id="btn-time">Time Series</button>
             </div>
 
+            <!-- <div id="phase-inputs" class="hidden-section hidden">
+                <h4>Pengaturan Potret Fase</h4>
+
+                <p class="hint">1. Batas Grafik (Domain):</p>
+                <div class="grid-2">
+                    <input type="number" id="xMin" placeholder="X Min" value="0">
+                    <input type="number" id="xMax" placeholder="X Max" value="5">
+                    <input type="number" id="yMin" placeholder="Y Min" value="0">
+                    <input type="number" id="yMax" placeholder="Y Max" value="5">
+                </div>
+
+                <hr style="border:0; border-top:1px solid #ddd; margin:15px 0;">
+
+                <p class="hint">2. Titik Awal Trajektori:</p>
+                <label>Berapa titik awal yang mau dibuat?</label>
+                <div class="input-group">
+                    <input type="number" id="trajCount" placeholder="Jumlah (cth: 3)">
+                    <button class="btn-secondary" onclick="createTrajectoryInputs()">Set Titik</button>
+                </div>
+                <div id="trajInputsContainer" class="dynamic-container" style="margin-top: 10px;"></div>
+            </div> -->
+
             <div id="phase-inputs" class="hidden-section hidden">
                 <h4>Pengaturan Potret Fase</h4>
 
-                <p class="hint">1. Tentukan batas tampilan grafik (Domain):</p>
+                <p class="hint">1. Batas Grafik (Domain):</p>
+
                 <div class="grid-2">
-                    <input type="number" id="xMin" placeholder="X Min (cth: 0)" value="0">
-                    <input type="number" id="xMax" placeholder="X Max (cth: 5)" value="5">
-                    <input type="number" id="yMin" placeholder="Y Min (cth: 0)" value="0">
-                    <input type="number" id="yMax" placeholder="Y Max (cth: 5)" value="5">
+                    <input type="number" id="xMin" placeholder="X Min" value="0">
+                    <input type="number" id="xMax" placeholder="X Max" value="10">
+                    <input type="number" id="yMin" placeholder="Y Min" value="0">
+                    <input type="number" id="yMax" placeholder="Y Max" value="10">
                 </div>
 
-                <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
+                <div id="zLimits" class="grid-2 hidden" style="margin-top: 10px;">
+                    <input type="number" id="zMin" placeholder="Z Min" value="0">
+                    <input type="number" id="zMax" placeholder="Z Max" value="10">
+                </div>
 
-                <p class="hint">2. Tentukan titik awal garis trajektori:</p>
+                <hr style="border:0; border-top:1px solid #ddd; margin:15px 0;">
+
+                <p class="hint">2. Titik Awal Trajektori:</p>
                 <label>Berapa titik awal yang mau dibuat?</label>
                 <div class="input-group">
-                    <input type="number" id="trajCount" placeholder="Jumlah titik (cth: 3)">
+                    <input type="number" id="trajCount" placeholder="Jumlah (cth: 3)">
                     <button class="btn-secondary" onclick="createTrajectoryInputs()">Set Titik</button>
                 </div>
 
                 <div id="trajInputsContainer" class="dynamic-container" style="margin-top: 10px;"></div>
             </div>
-
-            <!-- <div id="phase-inputs" class="hidden-section hidden">
-                <h4>Pengaturan Potret Fase</h4>
-                <p class="hint">Tentukan batas sumbu X dan Y.</p>
-                <div class="grid-2">
-                    <input type="number" id="xMin" placeholder="X Min (cth: 0)">
-                    <input type="number" id="xMax" placeholder="X Max (cth: 10)">
-                    <input type="number" id="yMin" placeholder="Y Min (cth: 0)">
-                    <input type="number" id="yMax" placeholder="Y Max (cth: 10)">
-                </div>
-                <p class="note">*Titik ekuilibrium akan ditandai dengan bintang.</p>
-            </div> -->
 
             <div id="timeseries-inputs" class="hidden-section hidden">
                 <h4>Pengaturan Time Series</h4>
@@ -113,7 +131,23 @@
                 </div>
             </div>
 
-            <button type="button" class="btn-generate" onclick="generatePlot()">Generate Visualisasi</button>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button type="button" class="btn-generate" onclick="generatePlot()" style="flex: 2;">
+                    Generate Visualisasi
+                </button>
+
+                <button type="button" onclick="downloadImage()" style="
+                flex: 1; 
+                background-color: #34495e; 
+                color: white; 
+                border: none; 
+                border-radius: 8px; 
+                font-weight: bold; 
+                cursor: pointer;
+                display: flex; align-items: center; justify-content: center; gap: 5px;">
+                    <span>📷</span> Download
+                </button>
+            </div>
         </div>
 
         <div id="plot-area"></div>

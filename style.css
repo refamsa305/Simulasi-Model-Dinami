@@ -3,7 +3,6 @@
     --accent: #3498db;
     --light: #ecf0f1;
     --success: #27ae60;
-    --danger: #e74c3c;
     --radius: 8px;
 }
 
@@ -25,7 +24,6 @@ body {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* Header */
 header {
     text-align: center;
     border-bottom: 2px solid var(--light);
@@ -37,19 +35,32 @@ header {
     font-size: 2.2em;
     font-weight: 800;
     color: var(--primary);
-    letter-spacing: -1px;
 }
 
 .logo span {
     color: var(--accent);
 }
 
-.description {
-    color: #7f8c8d;
-    margin-top: 5px;
+.credit-badge {
+    margin-top: 10px;
+    padding: 5px 15px;
+    background: #eef2f3;
+    display: inline-block;
+    border-radius: 20px;
+    border: 1px solid #ddd;
 }
 
-/* Guide Box */
+.credit-badge small {
+    color: #555;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.credit-badge span {
+    color: #2c3e50;
+    font-weight: 800;
+}
+
 .guide-box {
     background: #eef7fd;
     border-left: 4px solid var(--accent);
@@ -58,32 +69,12 @@ header {
     margin-bottom: 30px;
 }
 
-.guide-box h3 {
-    margin-top: 0;
-    color: var(--primary);
-    font-size: 1.1em;
-}
-
-.guide-box ol {
-    padding-left: 20px;
-    margin-bottom: 0;
-}
-
-/* Cards & Inputs */
 .card {
     background: #fff;
     border: 1px solid #e1e4e8;
     padding: 20px;
     border-radius: var(--radius);
     margin-bottom: 20px;
-}
-
-h3 {
-    margin-top: 0;
-    font-size: 1.2em;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-    margin-bottom: 15px;
 }
 
 input,
@@ -95,7 +86,6 @@ select {
     border-radius: 4px;
     box-sizing: border-box;
     font-family: monospace;
-    /* Agar rumus mudah dibaca */
 }
 
 .input-group {
@@ -109,29 +99,21 @@ select {
     gap: 15px;
 }
 
+/* CSS BARU: GRID 3 KOLOM UNTUK 3D */
+.grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+}
+
 .dynamic-row {
     display: grid;
     grid-template-columns: 80px 1fr;
-    /* Kolom nama kecil, fungsi besar */
     gap: 10px;
     margin-bottom: 10px;
     align-items: center;
 }
 
-.hint {
-    font-size: 0.85em;
-    color: #666;
-    margin-top: -5px;
-    margin-bottom: 10px;
-}
-
-.note {
-    font-size: 0.8em;
-    color: var(--danger);
-    font-style: italic;
-}
-
-/* Buttons */
 .btn-secondary {
     background: var(--primary);
     color: white;
@@ -140,7 +122,6 @@ select {
     border-radius: 4px;
     cursor: pointer;
     height: 38px;
-    /* Match input height */
 }
 
 .mode-buttons {
@@ -177,7 +158,6 @@ select {
     font-size: 1.1em;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 20px;
     transition: background 0.3s;
 }
 
@@ -185,7 +165,6 @@ select {
     background-color: #219150;
 }
 
-/* Utilities */
 .hidden {
     display: none;
 }
@@ -199,7 +178,7 @@ select {
 
 #plot-area {
     width: 100%;
-    height: 600px;
+    height: 650px;
     margin-top: 30px;
     border: 1px solid #ddd;
     border-radius: var(--radius);
