@@ -183,3 +183,87 @@ select {
     border: 1px solid #ddd;
     border-radius: var(--radius);
 }
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+/* Tablet (max-width: 768px) */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .grid-3 {
+        grid-template-columns: 1fr 1fr;
+        /* 3 kolom jadi 2 kolom di tablet */
+    }
+
+    .mode-buttons {
+        flex-wrap: wrap;
+    }
+
+    .mode-btn {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+/* Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 15px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    header {
+        margin-bottom: 20px;
+    }
+
+    .logo {
+        font-size: 1.8em;
+    }
+
+    /* Semua Grid jadi 1 kolom */
+    .grid-2,
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    .btn-secondary {
+        width: 100%;
+    }
+
+    .dynamic-row {
+        grid-template-columns: 1fr;
+        /* Nama variabel di atas, fungsi di bawah */
+        gap: 5px;
+    }
+
+    /* Tombol Generate & Download jadi stack vertikal */
+    .card>div[style*="display: flex"] {
+        flex-direction: column;
+    }
+
+    .btn-generate,
+    .card>div[style*="display: flex"]>button {
+        width: 100%;
+        flex: none !important;
+    }
+
+    #plot-area {
+        height: 400px;
+        /* Perkecil plot di HP */
+    }
+}
